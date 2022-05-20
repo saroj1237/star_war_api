@@ -9,3 +9,7 @@ class ServerFailure extends Failure {
   @override
   List<Object?> get props => [];
 }
+class CachedFailure extends Failure {
+  @override
+  List<Object?> get props => [];
+}
