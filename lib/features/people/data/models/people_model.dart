@@ -1,3 +1,4 @@
+import 'package:http/retry.dart';
 import 'package:star_war_api/features/people/domain/entities/people.dart';
 
 class PeopleModel extends People {
@@ -12,7 +13,10 @@ class PeopleModel extends People {
       gender: json['gender'],
     );
   }
-  // Map<String, dynamic> toJson() {
+}
 
-  // }
+class PeopleResponse {
+  final List<People> peoples;
+  final int totalItem;
+  PeopleResponse({required this.peoples, required this.totalItem});
 }

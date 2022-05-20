@@ -8,6 +8,9 @@ class PeopleTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 200,
+      width: double.infinity,
+      alignment: Alignment.center,
       child: Text(
         people.name,
       ),

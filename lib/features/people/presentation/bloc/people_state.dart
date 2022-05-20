@@ -13,7 +13,8 @@ class PeopleLoading extends PeopleState {}
 
 class PeopleLoaded extends PeopleState {
   final List<People> people;
-  const PeopleLoaded({required this.people});
+  final bool showLodingMoreIndicator;
+  const PeopleLoaded({required this.people, required this.showLodingMoreIndicator});
 }
 
 class PeopleError extends PeopleState {
