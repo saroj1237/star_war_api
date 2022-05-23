@@ -1,8 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:star_war_api/core/error/failures.dart';
-import 'package:star_war_api/core/usecases/usecases.dart';
-import 'package:star_war_api/features/people/data/models/people_model.dart';
 import 'package:star_war_api/features/people/domain/entities/people.dart';
 
 import '../../domain/usecases/get_people_list.dart';
