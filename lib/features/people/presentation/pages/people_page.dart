@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:star_war_api/features/people/presentation/bloc/people_bloc.dart';
 
@@ -16,22 +17,32 @@ class _PeoplePageState extends State<PeoplePage> {
   final scrollController = ScrollController();
   @override
   void initState() {
+    ScrollDirection scrollDirection;
     scrollController.addListener(() {
       double maxScroll = scrollController.position.maxScrollExtent;
       double currentScroll = scrollController.position.pixels;
-
-      print(maxScroll);
-      print('current-> $currentScroll');
+      scrollDirection = scrollController.position.userScrollDirection;
+      if (scrollDirection == ScrollDirection.forward) {
+        print("scrolling down");
+        visible = false;
+        setState(() {});
+      } else {
+        print('scrolling up');
+        visible = true;
+        setState(() {});
+      }
       if (currentScroll == maxScroll) {
         print(
             "Start calling api-----------------------------BOttom of list---------");
-       
+
         context.read<PeopleBloc>().add(GetMorePeopleEvent());
         setState(() {});
       }
     });
     super.initState();
   }
+
+  bool visible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +78,7 @@ class _PeoplePageState extends State<PeoplePage> {
                         alignment: Alignment.bottomCenter,
                         child: CircularProgressIndicator(),
                       )
-                    : SizedBox.shrink()
+                    : SizedBox.shrink(),
               ]),
             );
           } else {
@@ -75,6 +86,31 @@ class _PeoplePageState extends State<PeoplePage> {
           }
         },
       ),
+      floatingActionButton: visible
+          ? FloatingActionButton(
+              // style: ButtonStyle(
+              //     backgroundColor:
+              //         MaterialStateProperty.all<Color>(Colors.grey.shade200),
+              //     elevation: MaterialStateProperty.all<double>(5),
+              //     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              //       RoundedRectangleBorder(
+              //         borderRadius: BorderRadius.circular(180),
+              //         // side: BorderSide(color: Colors.red),
+              //       ),
+              //     )),
+              onPressed: () {},
+              child: IconButton(
+                icon: Icon(
+                  Icons.arrow_upward,
+                ),
+                onPressed: () {
+                  scrollController.animateTo(0,
+                      duration: const Duration(seconds: 1),
+                      curve: Curves.linear);
+                },
+              ),
+            )
+          : null,
     );
   }
 }
