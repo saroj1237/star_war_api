@@ -25,7 +25,7 @@ class _PeoplePageState extends State<PeoplePage> {
       if (currentScroll == maxScroll) {
         print(
             "Start calling api-----------------------------BOttom of list---------");
-        // BlocProvider.of<ProductBloc>(context).add(GetProduct());
+       
         context.read<PeopleBloc>().add(GetMorePeopleEvent());
         setState(() {});
       }

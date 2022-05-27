@@ -11,7 +11,7 @@ import 'package:http/http.dart' as http;
 final sl = GetIt.instance;
 
 Future<void> init() async {
-//  Feature 1. Pepole
+//  Feature 1. People
 // Bloc
   sl.registerFactory(() => PeopleBloc(getPeopleList: sl()));
 // usecases
